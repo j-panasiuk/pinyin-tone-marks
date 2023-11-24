@@ -1,0 +1,107 @@
+:root {
+  --1: 0.5rem;
+  --2: 1rem;
+  --background: blanchedalmond;
+  --border: burlywood;
+  --focus: rosybrown;
+  --placeholder: lightgray;
+  --text: dimgray;
+  --textfield: ivory;
+  --font: system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::placeholder {
+  font-style: italic;
+  color: var(--placeholder);
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  padding: var(--1);
+  display: flex;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+@media (orientation: portrait) {
+  body {
+    flex-direction: column;
+  }
+}
+
+@media (orientation: landscape), (min-width: 1200px) {
+  body {
+    flex-direction: row;
+  }
+}
+
+fieldset {
+  margin: var(--1);
+  padding: var(--2);
+  border: 1px dashed var(--border);
+  flex: 1;
+}
+
+legend {
+  padding: 0 var(--1);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+fieldset:nth-of-type(1) legend::before {
+  content: "Translate from ";
+}
+
+fieldset:nth-of-type(2) legend::before {
+  content: "Translate to ";
+}
+
+textarea {
+  border-radius: 2px;
+  background: var(--textfield);
+}
+
+textarea:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 0px;
+  box-shadow: 0 0 4px 2px var(--focus);
+}
+
+/* Auto-growing textareas, borrowed from: */
+/* @see https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/ */
+
+[data-textfield] {
+  display: grid;
+}
+
+[data-textfield]::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+
+[data-textfield] > textarea {
+  resize: none;
+  overflow: hidden;
+}
+
+[data-textfield] > textarea,
+[data-textfield]::after {
+  width: 100%;
+  padding: var(--1);
+  border: none;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+}

@@ -3,10 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="style.css" as="style" />
+    <link rel="preload" href="script.js" as="script" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.svg" />
     <title>Pinyin Tone Marks</title>
   </head>
   <body>
-    <script src="./script.js" defer></script>
-    <h1>Mandarin Tone Marks</h1>
+    <fieldset>
+      <legend>Pinyin1</legend>
+      <div data-textfield>
+        <textarea
+          oninput="this.parentNode.dataset.replicatedValue = this.value"
+          rows="10"
+          placeholder="tian1qi4 hen3 mei3"
+          spellcheck="false"
+          autofocus
+        ></textarea>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Pinyin2</legend>
+      <div data-textfield>
+        <textarea
+          oninput="this.parentNode.dataset.replicatedValue = this.value"
+          placeholder="tiānqì hěn měi"
+          rows="10"
+          spellcheck="false"
+        ></textarea>
+      </div>
+    </fieldset>
+    <script src="script.js" defer></script>
   </body>
 </html>
