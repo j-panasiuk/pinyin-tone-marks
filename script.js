@@ -1,11 +1,21 @@
 // @ts-check
 
+// -- INIT --
+
+const [textareaIn, textareaOut] = document.getElementsByTagName("textarea");
+
+textareaIn.addEventListener("input", () => {
+  textareaOut.value = markPinyin(textareaIn.value);
+});
+
+// -- PINYIN --
+
 /**
  * @param {string} pinyinWithDigits
  * @returns {string}
  * @example "tian1qi4 hen3 mei3!" -> "tiānqì hěn měi!"
  */
-function addToneMarks(pinyinWithDigits) {
+function markPinyin(pinyinWithDigits) {
   let out = pinyinWithDigits;
 
   for (let match of pinyinWithDigits.matchAll(/([a-zA-Z]+)([1-4]{1})/g)) {
